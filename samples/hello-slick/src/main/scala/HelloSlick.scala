@@ -48,7 +48,7 @@ object HelloSlick extends App {
       //#insertAction
 
       val allSuppliersAction: DBIO[Seq[(Int, String, String, String, String, String)]] =
-        suppliers.result
+        suppliers.filter(_.id > 50).result
 
       val combinedAction: DBIO[Seq[(Int, String, String, String, String, String)]] =
         insertAndPrintAction andThen allSuppliersAction
@@ -91,7 +91,7 @@ object HelloSlick extends App {
       /* Update */
 
       // Construct an update query with the sales column being the one to update
-      val updateQuery: Query[Rep[Int], Int, Seq] = coffees.map(_.sales)
+      val updateQuery: Query[Rep[Int], Int, Seq] = coffees.filter(_.sales > 50).map(_.sales)
 
       val updateAction: DBIO[Int] = updateQuery.update(1)
 

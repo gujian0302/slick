@@ -32,7 +32,7 @@ class TablesSuite extends FunSuite with BeforeAndAfter with ScalaFutures {
 
   test("Inserting a Supplier works") {
     createSchema()
-    
+
     val insertCount = insertSupplier()
     assert(insertCount == 1)
   }
